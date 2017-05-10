@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>GaussImage &ndash; GAUSS{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Best photo / image gallery on Google App Engine">
+
+		<link href="/static/stylesheets/reset.css" rel="stylesheet" type="text/css" />
+		<link href="/static/stylesheets/button.css" rel="stylesheet" type="text/css" />
+		<link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
+		
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+		<script type="text/javascript" src="/static/main.js"></script>
+	</head>
+    <body>
+    	<div id="root">
+    	
+    	<div id="header">
+    		<div id="logo">
+    			<h1 id="site-name">
+    				<img  style=" margin-right: 20px; border-radius: 50%;  height: 30px;  width: 30px; " src="https://pp.userapi.com/c639817/v639817267/21a46/6g-noCpNu_Q.jpg"/>
+    				<a href="/">		GaussImage</a>
+    			</h1>
+    		</div>
+    		<div id="menu">
+    		<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/find">Find</a></li>
+			</ul>
+			<div class="clear"></div>
+			</div>		
+    	</div>
+        
+    	<!-- header end -->
+
+    	<div class="container">
+        <div id="main">
+        {% block main %}{% endblock %}
+        </div>
+        </div>
+        <br class="clear" />
+        <div id="footer">
+            <p class="footnote"> <strong><a href="/">Created</a></strong> by <a href="https://mail.google.com/mail/u/0/#inbox">Michael and Dima</a>&ndash;<a href="https://gausseditor.appspot.com/"></a>
+                <a href="{{logout}}">sign out</a></p>
+        </div>
+        
+        </div>
+    </body>
+</html>

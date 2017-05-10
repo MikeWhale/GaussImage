@@ -1,5 +1,4 @@
 #coding:utf-8
-#From http://code.google.com/p/plsamples/source/browse/trunk/GrandMonde/getimageinfo.py
 
 import StringIO
 import struct
