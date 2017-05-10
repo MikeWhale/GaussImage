@@ -1,15 +1,15 @@
 #coding:utf-8
+
 from models import Images
 from google.appengine.api import memcache
 from google.appengine.api import images
 from getimageinfo import getImageInfo
-
+    
 def addImage(mime,description,bf,name):
-    'Add Image'
     image=Images(mime=mime,description=description,bf=bf,name=name)
     image.size=len(image.bf)
     image.filetype,image.width,image.height=getImageInfo(bf)
-    image.put() 
+    image.put()
     return image
 
 def addImage2(bf):
@@ -30,7 +30,7 @@ def resizeImage(id,size="image"):
     if not image:return None
     if size=="image":return image
     img=images.Image(image.bf)
-    img.resize(width=125, height=125)	
+    img.resize(width=500, height=500)
     img.im_feeling_lucky()
     image.bf=img.execute_transforms(output_encoding=images.JPEG)
     return image
@@ -48,14 +48,14 @@ def delImage(key):
     if image:image.delete()
     
 def getAllImages(index=0):
-    return Images.all().order('-created_at').fetch(11,index*10)
+    return Images.all().order('-created_at').fetch(31,index*30)
 
 def getPageing(index,page=0):
     s="/%s/"
     if page==0:
-        if index==11:return (None,"/1/")
+        if index==31:return (None,"/1/")
         else:return (None,None)
-    if index==11:
+    if index==31:
         return ("/",s%(page+1)) if page==1 else (s %(page-1),s%(page+1))
     return ("/",None) if page==1 else (s %(page-1),None)
     

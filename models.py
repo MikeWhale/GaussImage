@@ -16,13 +16,12 @@ class Images(db.Model):
     bf = db.BlobProperty() #binary file
     
     def put(self):
-        super(Images,self).put()
+        super(Images,self).put()    
         
     def delete(self):
         key=str(self.key().id())+"image"
         memcache.delete(key)
         super(Images,self).delete()
-        
     @property
     def id(self):
         return str(self.key().id())

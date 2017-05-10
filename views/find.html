@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{image.created_at}}{% endblock %}
+{% block main %}
+
+<h2 class="panel-tit"><span>Find by image</span></h2>
+<div id="uploadpanle">
+    
+  <form id="upload_form"  action="/admin/find/" enctype="multipart/form-data" method="post">
+    <div class="selete">Select image: <input type="file" name="file" id="file" /></div>
+    <div><input  type="submit" value="Descript" class="super white button awesome" /></div>
+         <div><input href="/admin/find2/" type="submit" value="Check" class="super white button awesome" /></div>
+  </form>
+ 
+<ul class="note">
+<li>Searching: To perform a search, apply your descriptor to your query image, and then ask your distance metric to rank how similar your images are in your index to your query images. <strong>Sort your results via similarity and then examine them.</strong></li>
+</ul>
+</div>
+{% endblock %}
+</body>
+</html>

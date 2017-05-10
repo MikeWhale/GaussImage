@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} &ndash; {{image.created_at}}{% endblock %}
+{% block main %}
+
+<div class="page">
+<div class="rt-btn"><a href="/" title="Back" class="red awesome button"><span>Back</span></a></div>
+<h2 class="page-sub-tit">	Original Image : 1.0</h2>
+<div class="clear"></div>
+</div>
+
+<ul id="album">
+    <li>
+        <a  href="/show/{{image.id}}/"><img  alt="{{image.name}}" src="/s/{{image.id}}/"/></a>
+    </li>
+<ul>
+<li>type: {{image.filetype}}</li>
+<li>shape:{{image.width}} x {{image.height}}</li>
+<li>fat:  {{image.size|filesizeformat}}</li>
+<li>hash: {{image.description}}</li>
+</ul>
+
+</ul>
+<div class="clear"></div>
+
+
+<div class="page">
+<h2 class="page-sub-tit">Found Image : {{simil}}</h2>
+<p class="tagline">
+</p>
+<div class="clear"></div>
+</div>
+
+<ul id="album">
+    <li>
+        <a  href="/show/{{git.id}}/"><img  alt="{{git.name}}" src="/s/{{git.id}}/"/></a>
+    </li>
+ <ul>
+<li>type: {{git.filetype}}</li>
+<li>shape:{{git.width}} x {{git.height}}</li>
+<li>fat:  {{git.size|filesizeformat}}</li>
+<li>hash: {{git.description}}</li>
+</ul>
+</ul>
+<div class="clear"></div>
+
+{% endblock %}
+
+
+
+</body>
+</html>

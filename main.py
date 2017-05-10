@@ -6,9 +6,10 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import users
 import methods
 import logging
+
+
 def format_date(dt):
     return dt.strftime('%a, %d %b %Y %H:%M:%S GMT')
-
 
 class PublicPage(webapp.RequestHandler):
   def render(self, template_file, template_value):
@@ -31,15 +32,22 @@ class MainPage(PublicPage):
     index=0 if page=="" else int(page)
     images=methods.getAllImages(index)
     prev,next=methods.getPageing(len(images), index)
-    template_value={"images":images[:10],"prev":prev,"next":next, "logout":users.create_logout_url("/")}
+    template_value={"images":images[:30],"prev":prev,"next":next, "logout":users.create_logout_url("/")}
     self.render('views/index.html', template_value)
-
+ 
 class ShowImage(PublicPage):
   def get(self,id):
     image=methods.getImage(id)
     if not image:return self.error(404)
     template_value={"image":image,"admin":self.is_admin()}
     self.render('views/show.html', template_value)
+    
+class GShowImage(PublicPage):
+  def get(self,id):
+    image=methods.getImage(id)
+    if not image:return self.error(404)
+    template_value={"image":image,"admin":self.is_admin()}
+    self.render('views/gausshow.html', template_value)
 
 class GetImage(PublicPage):
   def get(self,size,id):
@@ -64,13 +72,20 @@ class AboutPage(PublicPage):
         def get(self):
             template_value={}
             self.render('views/about.html', template_value)
+
+class FindPage(PublicPage):
+        def get(self):
+            template_value = {}
+            self.render('views/find.html', template_value)
             
 application = webapp.WSGIApplication(
                                        [('/(?P<page>[0-9]*)/?', MainPage),
                                        	('/about', AboutPage),
+                                        ('/find', FindPage),
                                         (r'/(?P<size>image)/(?P<id>[0-9]+)/?',GetImage),
                                         (r'/(?P<size>s)/(?P<id>[0-9]+)/?',GetImage),
                                         (r'/show/(?P<id>[0-9]+)/',ShowImage),
+                                        (r'/gshow/(?P<id>[0-9]+)/',GShowImage),
                                         ('.*',Error)
                                        ], debug=True)
 wsgiref.handlers.CGIHandler().run(application)
